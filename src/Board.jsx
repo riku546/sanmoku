@@ -13,15 +13,23 @@ function Board() {
   const [winner, setWinner] = useState(0);
 
   const winnerCheck = (board) => {
-    const point = [];
+    let point = [];
     let winner = 0;
-    board.forEach((row) => {
+    // console.log(board)
+    board.forEach((row, rowIndex) => {
+      // console.log(rowIndex)
       row.forEach((i) => {
+        if (i === 0) return;
         point.push(i);
+        if (point[0] === 0) return;
+        // console.log(i);
         if (point[0] === point[1] && point[0] === point[2]) {
           winner = point[0];
+
         }
+        console.log(point);
       });
+      point = []
     });
     return winner;
   };
@@ -31,7 +39,7 @@ function Board() {
     newBoard[y][x] = turn;
     setBoard(newBoard);
     const winner = winnerCheck(newBoard);
-    console.log(winner);
+    // console.log(winner);
     setWinner(winner);
     setTurn((prev) => 3 - prev);
   };
