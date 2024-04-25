@@ -9,6 +9,14 @@
     
 
 }
+
+.row{
+    display: flex;
+
+}
+
+
+
 .cell{
     width: 100px;
     height: 100px;
@@ -22,4 +30,9 @@
 .stone{
     color: black;
     font-size: 40px;
+}
+
+h3{
+    color:white;
+    text-align:center
 }
