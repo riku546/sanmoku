@@ -25,14 +25,69 @@ function Board() {
         // console.log(i);
         if (point[0] === point[1] && point[0] === point[2]) {
           winner = point[0];
-
         }
-        console.log(point);
+        // console.log(point);
       });
-      point = []
+      point = [];
     });
+    if(winner === 0){
+      const winner_column = rowToColumn()
+      return winner_column
+      
+    }
     return winner;
   };
+
+
+
+
+  const rowToColumn = () => {
+    const arr = [...board]
+    const arrTotal = [];
+    const arr0 = [];
+    const arr1 = [];
+    const arr2 = [];
+
+    arr.map((row, rowIndex) => {
+      row.map((i, index) => {
+        if (index === 0) {
+          arr0.push(i);
+        } else if (index === 1) {
+          arr1.push(i);
+        } else {
+          arr2.push(i);
+        }
+      });
+    });
+
+    arrTotal.push(arr0);
+    arrTotal.push(arr1);
+    arrTotal.push(arr2);
+
+    let point = [];
+    let winner = 0;
+    // console.log(board)
+    arrTotal.forEach((row, rowIndex) => {
+      // console.log(rowIndex)
+      row.forEach((i) => {
+        if (i === 0) return;
+        point.push(i);
+        if (point[0] === 0) return;
+        // console.log(i);
+        if (point[0] === point[1] && point[0] === point[2]) {
+          winner = point[0];
+        }
+        // console.log(point);
+      });
+      point = [];
+    });
+
+    return winner;
+
+    // winnerCheck(arrTotal)
+  };
+
+
 
   const clickHandler = (y, x) => {
     const newBoard = [...board];
@@ -43,6 +98,9 @@ function Board() {
     setWinner(winner);
     setTurn((prev) => 3 - prev);
   };
+
+
+
 
   return (
     <>
