@@ -30,19 +30,15 @@ function Board() {
       });
       point = [];
     });
-    if(winner === 0){
-      const winner_column = rowToColumn()
-      return winner_column
-      
+    if (winner === 0) {
+      const winner_column = rowToColumn();
+      return winner_column;
     }
     return winner;
   };
 
-
-
-
   const rowToColumn = () => {
-    const arr = [...board]
+    const arr = [...board];
     const arrTotal = [];
     const arr0 = [];
     const arr1 = [];
@@ -87,8 +83,6 @@ function Board() {
     // winnerCheck(arrTotal)
   };
 
-
-
   const clickHandler = (y, x) => {
     const newBoard = [...board];
     newBoard[y][x] = turn;
@@ -98,9 +92,6 @@ function Board() {
     setWinner(winner);
     setTurn((prev) => 3 - prev);
   };
-
-
-
 
   return (
     <>
