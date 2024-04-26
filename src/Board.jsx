@@ -104,7 +104,7 @@ function Board() {
 
   return (
     <>
-      <h3>{winner !== 0 ? "winner: " + winner : "turn: " + turn}</h3>
+      <h3>{winner !== 0 ? "Winner: " + winner : "Turn: " + turn}</h3>
 
       <div className="board">
         {board.map((row, rowIndex) => (
