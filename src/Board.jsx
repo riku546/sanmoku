@@ -12,6 +12,62 @@ function Board() {
   const [turn, setTurn] = useState(1);
   const [winner, setWinner] = useState(0);
 
+  const DiagonalToRow = () => {
+    const arr0 = [];
+    let winner = 0;
+    let point = [];
+
+    board.map((row, rowIndex) => {
+      row.map((i, index) => {
+        if (rowIndex === index) {
+          arr0.push(i);
+        }
+      });
+    });
+
+    arr0.forEach((i) => {
+      if (i === 0) return;
+      point.push(i);
+      if (point[0] === 0) return;
+      // console.log(i);
+      if (point[0] === point[1] && point[0] === point[2]) {
+        winner = point[0];
+      }
+    });
+
+    if(winner === 0){
+      point = []
+      const arr3 = []
+      
+
+      board.map((row , rowIndex)=>{
+          row.map((i , index)=>{
+              if(rowIndex === 1 && index ===1 ){
+                  arr3.push(i)
+              }else if(rowIndex === 2 && index ===0){
+                  arr3.push(i)
+              }else if(rowIndex === 0 && index ===2){
+                  arr3.push(i)
+              }
+          })
+      }) 
+      console.log(arr3)
+
+      arr3.forEach((i) => {
+        if (i === 0) return;
+        point.push(i);
+        if (point[0] === 0) return;
+        // console.log(i);
+        if (point[0] === point[1] && point[0] === point[2]) {
+          winner = point[0];
+        }
+      });     
+      
+    }
+
+    return winner;
+  };
+
   const winnerCheck = (board) => {
     let point = [];
     let winner = 0;
@@ -30,19 +86,20 @@ function Board() {
       });
       point = [];
     });
-    if(winner === 0){
-      const winner_column = rowToColumn()
-      return winner_column
-      
+    if (winner === 0) {
+      const winnerColumn = rowToColumn();
+      if (winnerColumn === 0) {
+        const winnerDiagonal = DiagonalToRow();
+        // console.log(winnerDiagonal)
+        return winnerDiagonal;
+      }
+      return winnerColumn;
     }
     return winner;
   };
 
-
-
-
   const rowToColumn = () => {
-    const arr = [...board]
+    const arr = [...board];
     const arrTotal = [];
     const arr0 = [];
     const arr1 = [];
@@ -87,8 +144,6 @@ function Board() {
     // winnerCheck(arrTotal)
   };
 
-
-
   const clickHandler = (y, x) => {
     const newBoard = [...board];
     newBoard[y][x] = turn;
@@ -98,9 +153,6 @@ function Board() {
     setWinner(winner);
     setTurn((prev) => 3 - prev);
   };
-
-
-
 
   return (
     <>
