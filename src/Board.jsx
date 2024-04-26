@@ -87,6 +87,7 @@ function Board() {
       point = [];
     });
     if (winner === 0) {
+
       const winnerColumn = rowToColumn();
       if (winnerColumn === 0) {
         const winnerDiagonal = DiagonalToRow();
@@ -94,6 +95,9 @@ function Board() {
         return winnerDiagonal;
       }
       return winnerColumn;
+
+
+
     }
     return winner;
   };
