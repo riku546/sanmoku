@@ -31,8 +31,7 @@ function Board() {
       point = [];
     });
     if (winner === 0) {
-      const winner_column = rowToColumn();
-      return winner_column;
+
     }
     return winner;
   };
